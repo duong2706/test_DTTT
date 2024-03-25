@@ -13,9 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install GCC
-        run: sudo apt-get update && sudo apt-get install -y gcc
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Thay đổi phiên bản Node.js tại đây nếu cần
+
+      - name: Install dependencies
+        run: npm install # Thay đổi lệnh này nếu bạn sử dụng công cụ quản lý gói khác như yarn
 
       - name: Build
-        run: |
-          make
+        run: npm run build # Thay đổi lệnh này nếu bạn sử dụng lệnh build khác
+
+      # Thêm các bước tiếp theo nếu cần thiết, chẳng hạn như kiểm tra, triển khai, ...
+
