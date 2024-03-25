@@ -1,0 +1,26 @@
+{
+  "name": "test_dttt",
+  "version": "1.0.0",
+  "description": "A CI/CD pipeline setup for Node.js projects",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0",
+    "build": "build1" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "url" 
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@actions/checkout": "^v2",
+    "@actions/setup-node": "^v2"
+  },
+  "scripts": {
+    "test": "npm test",
+    "build": "build2"
+  },
+  "dependencies": {
+   
+  }
+}
