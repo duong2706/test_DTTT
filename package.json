@@ -4,7 +4,7 @@
   "description": "A CI/CD pipeline setup for Node.js projects",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "build": "build" 
+    "build": "your-build-command"
   },
   "repository": {
     "type": "git",
@@ -12,15 +12,6 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@actions/checkout": "^v2",
-    "@actions/setup-node": "^v2"
-  },
-  "scripts": 
-  {
-    "test": "npm test",
-    "build": "build1"
-  },
   "dependencies": {
     "@types/jest": "^27.0.2",
     "jest": "^27.0.6"
