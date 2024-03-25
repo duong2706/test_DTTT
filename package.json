@@ -4,7 +4,7 @@
   "description": "A CI/CD pipeline setup for Node.js projects",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "build": "build1" 
+    "build": "build" 
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,8 @@
     "@actions/checkout": "^v2",
     "@actions/setup-node": "^v2"
   },
-  "scripts": {
+  "scripts": 
+  {
     "test": "npm test",
     "build": "build2"
   },
