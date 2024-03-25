@@ -1,0 +1,27 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Thay 'main' bằng tên nhánh chính của bạn
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up C compiler
+        uses: actions/setup-gcc@v2
+        with:
+          gcc-version: '10'  # Thay đổi phiên bản GCC nếu cần thiết
+
+      - name: Build
+        run: |
+          make  # Lệnh để build mã nguồn của bạn
+
+      - name: Test  # Tùy chọn: Thêm bước kiểm tra nếu cần thiết
+        run: |
+          make test  # Lệnh để chạy bài kiểm tra
