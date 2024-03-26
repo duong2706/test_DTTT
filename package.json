@@ -14,6 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "@types/jest": "^27.0.2",
-    "jest": "^27.0.6"
+    "abab": "^2.0.6",
+    "domexception": "^4.0.0",
+    "jest": "^27.0.6",
+    "w3c-hr-time": "^1.0.2"
   }
 }
