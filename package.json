@@ -4,13 +4,13 @@
   "description": "A CI/CD pipeline setup for Node.js projects",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "build": "npm build"
+    "build": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "url" 
+    "url": "https://github.com/duong2706/test_DTTT.git"
   },
-  "author": "",
+  "author": "Your Name",
   "license": "ISC",
   "dependencies": {
     "@types/jest": "^27.0.2",
