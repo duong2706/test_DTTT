@@ -6,14 +6,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest", 
-    "build": "your-build-command", 
-    "release": "your-release-command"
+    "test": "mocha", 
+    "build": "npm run test && npm run start", 
+    "release": "npm run build && docker build -t docker_web_app . && docker push docker_web_app" 
   },
   "dependencies": {
-    "express": "^4.16.1"
-  },
-  "devDependencies": {
-    "jest": "^27.0.6" 
-}
+    "express": "^4.16.1",
+    "mocha": "^8.4.0" 
+  }
 }
