@@ -11,7 +11,9 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3   # Cập nhật đến phiên bản mới nhất của actions/checkout
+      uses: actions/checkout@v3
+      with:
+        node-version: '20'   # Cập nhật để sử dụng Node.js 20
 
     - name: Install dependencies
       run: npm install
