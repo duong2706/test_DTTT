@@ -1,14 +1,16 @@
-# Sử dụng image base phù hợp với ứng dụng của bạn (ví dụ: Node.js, Python, etc.)
-FROM node:latest 
+FROM --platform=linux/amd64 node:16
 
-# Thiết lập thư mục làm việc của container
-WORKDIR /app 
+#create app directory
+WORKDIR /app
 
-# Sao chép mã nguồn từ thư mục cục bộ vào container
-COPY . .
+# install dependencies 
+# A Wildcard to make sure that we will copy both package.json and package-lock.json
+COPY package*.json /app/
 
-# Cài đặt các dependencies
-RUN npm install 
+RUN npm install
 
-# Thiết lập lệnh mặc định khi container chạy
+# Bundle app source
+COPY . . 
+
+EXPOSE 8080
 CMD ["npm", "start"]

@@ -1,22 +1,13 @@
 {
-  "name": "test_dttt",
+  "name": "docker_web_app",
   "version": "1.0.0",
-  "description": "A CI/CD pipeline setup for Node.js projects",
+  "description": "Node.js on Docker",
+  "author": "First Last <first.last@example.com>",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0",
-    "build": "npm run build"
+      "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/duong2706/test_DTTT.git"
-  },
-  "author": "Your Name",
-  "license": "ISC",
   "dependencies": {
-    "@types/jest": "^27.0.2",
-    "abab": "^2.0.6",
-    "domexception": "^4.0.0",
-    "jest": "^27.0.6",
-    "w3c-hr-time": "^1.0.2"
+      "express": "^4.16.1"
   }
 }
