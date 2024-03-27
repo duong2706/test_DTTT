@@ -25,7 +25,7 @@ jobs:
     - name: Push Docker image to registry
       uses: docker/build-push-action@v2
       with:
-        username: ${{ secrets.duong27062002 }}
-        password: ${{ secrets.27062002 }}
+        username: ${{ secrets.DOCKER_duong27062002 }}
+        password: ${{ secrets.DOCKER_27062002 }}
         repository: username/repository
         tag_with_ref: true
