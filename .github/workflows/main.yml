@@ -4,43 +4,30 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        node-version: '20'   # Cập nhật để sử dụng Node.js 20
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run unit tests
-        run: npm test
+    - name: Run unit tests
+      run: npm test
 
-      - name: Build
-        run: npm run build
+    - name: Build Docker image
+      run: docker build -t myapp .
 
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Heroku CLI
-        run: |
-          curl https://cli-assets.heroku.com/install.sh | sh
-
-      - name: Login to Heroku
-        run: heroku login -i
-
-      - name: Add Heroku remote
-        run: heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
-
-      - name: Deploy
-        # Add your deployment steps here, such as deploying to a cloud platform
-        run: echo "Deploying to Heroku"
-
-      - name: Push to Heroku
-        run: git push heroku main
+    - name: Push Docker image to registry
+      uses: docker/build-push-action@v2
+      with:
+        username: ${{ secrets.DOCKER_duong27062002 }}
+        password: ${{ secrets.DOCKER_27062002 }}
+        repository: username/repository
+        tag_with_ref: true
