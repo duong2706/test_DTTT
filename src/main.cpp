@@ -8,7 +8,7 @@ void setup()
 void loop()
 {
    digitalWrite(LED,HIGH);
-   delay(5000);
+   delay(500);
    digitalWrite(LED,LOW);
    delay(500);
 }
