@@ -1,4 +1,4 @@
-name: Deploy to Heroku
+name: CI/CD
 
 on:
   push:
@@ -6,6 +6,22 @@ on:
       - main
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
   deploy:
     runs-on: ubuntu-latest
 
@@ -22,6 +38,10 @@ jobs:
 
       - name: Add Heroku remote
         run: heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
+
+      - name: Deploy
+        # Add your deployment steps here, such as deploying to a cloud platform
+        run: echo "Deploying to Heroku"
 
       - name: Push to Heroku
         run: git push heroku main
