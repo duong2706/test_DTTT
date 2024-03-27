@@ -10,24 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        node-version: '20'   # Cập nhật để sử dụng Node.js 20
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run unit tests
-      run: npm test
+      - name: Run unit tests
+        run: npm test
 
-    - name: Build Docker image
-      run: docker build -t myapp .
+      - name: Build
+        run: npm run build
 
-    - name: Push Docker image to registry
-      uses: docker/build-push-action@v2
-      with:
-        username: ${{ secrets.DOCKER_duong27062002 }}
-        password: ${{ secrets.DOCKER_27062002 }}
-        repository: username/repository
-        tag_with_ref: true
+      - name: Deploy
+        # Add your deployment steps here, such as deploying to a cloud platform
