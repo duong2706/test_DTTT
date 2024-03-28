@@ -22,9 +22,11 @@ jobs:
       run: npm test
 
     - name: Build Docker image
+      if: success()   # Chỉ chạy nếu các bài kiểm tra đơn vị thành công
       run: docker build -t myapp .
 
     - name: Push Docker image to registry
+      if: success()   # Chỉ chạy nếu các bài kiểm tra đơn vị thành công
       uses: docker/build-push-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
