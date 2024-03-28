@@ -40,7 +40,5 @@ jobs:
 
       - name: Deploy to Processor
         run: |
-          # Giả sử bạn cần sao chép các tệp từ artifact vào vi xử lý tại đây
-          # Ví dụ: 
-          # cp -r ./myapp/* /path/to/your/processor
+          cp -r ./myapp/* /path/to/your/processor
           echo "Deployment completed"
