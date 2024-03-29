@@ -42,16 +42,19 @@ jobs:
         repository: username/repository
         tag_with_ref: true
 
-  release:
+   release:
     runs-on: ubuntu-latest
     needs: build
-
     steps:
-    - name: Copy compiled executable to server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        source: "./myapp"
-        target: "/home/user/myapp"
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      
+    - name: Deploy to server
+      if: success()   # Chỉ chạy nếu xây dựng thành công
+      run: |
+        ssh user@your_server_ip 'docker stop myapp || true'  # Dừng container hiện tại nếu có
+        ssh user@your_server_ip 'docker rm myapp || true'    # Xóa container hiện tại nếu có
+        ssh user@your_server_ip 'docker pull username/repository:latest'  # Pull Docker image mới nhất
+        ssh user@your_server_ip 'docker run -d --name myapp -p 80:80 username/repository:latest'  # Chạy container mới
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
