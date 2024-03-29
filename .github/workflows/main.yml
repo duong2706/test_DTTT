@@ -1,12 +1,12 @@
-
-name: CI/CD
+name: CI/CD and Deploy
 
 on:
   push:
     branches:
       - main
+
 jobs:
-  unit-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,19 +21,10 @@ jobs:
     - name: Run unit tests
       run: npm test
 
-  build:
-    runs-on: ubuntu-latest
-    needs: unit-test
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
     - name: Build Docker image
-      if: success()   # Chỉ chạy nếu các bài kiểm tra đơn vị thành công
       run: docker build -t myapp .
 
     - name: Push Docker image to registry
-      if: success()   # Chỉ chạy nếu các bài kiểm tra đơn vị thành công
       uses: docker/build-push-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -41,19 +32,20 @@ jobs:
         repository: username/repository
         tag_with_ref: true
 
-   release:
+  deploy:
     runs-on: ubuntu-latest
+
     needs: build
+
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
-      
-    - name: Deploy to server
-      if: success()   # Chỉ chạy nếu xây dựng thành công
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy via SSH
       run: |
-        ssh user@your_server_ip 'docker stop myapp || true'  # Dừng container hiện tại nếu có
-        ssh user@your_server_ip 'docker rm myapp || true'    # Xóa container hiện tại nếu có
-        ssh user@your_server_ip 'docker pull username/repository:latest'  # Pull Docker image mới nhất
-        ssh user@your_server_ip 'docker run -d --name myapp -p 80:80 username/repository:latest'  # Chạy container mới
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh -o StrictHostKeyChecking=no user@hostname 'cd /path/to/your/app && git pull origin main && docker-compose up -d --build'
