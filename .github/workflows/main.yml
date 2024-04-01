@@ -60,6 +60,9 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    - name: Build Website
+      run: npm run build   # Đảm bảo bạn có lệnh build thực sự cho trang web của bạn
+
     - name: Deploy to GitHub Pages
       if: success()   # Chỉ chạy nếu việc xây dựng thành công
       uses: peaceiris/actions-gh-pages@v3
