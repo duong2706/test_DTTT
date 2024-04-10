@@ -55,18 +55,19 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20'
+        node-version: '14'
 
     - name: Install Dependencies
       run: npm install
 
     - name: Build Website
-      run: npm run build   # Đảm bảo bạn có lệnh build thực sự cho trang web của bạn
+      run: npm run build
 
     - name: Deploy to GitHub Pages
-      if: success()   # Chỉ chạy nếu việc xây dựng thành công
+      if: success()
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./path/to/your/website
-        cname: yourdomain.com   # Tùy chọn: nếu bạn muốn sử dụng tên miền tùy chỉnh
+        publish_dir: ./build
+        # CNAME is optional, only if you want to use a custom domain
+        # cname: yourdomain.com   
