@@ -18,5 +18,5 @@ jobs:
 
     - name: Compile Code and Generate Binary File
       run: |
-        g++ -o myapp C:/Users/nvduo/TEST_DTTT/test_DTTT/src/main.cpp -lstdc++
+        g++ -o myapp ./src/main.cpp -lstdc++
         objcopy -O binary myapp myapp.bin
