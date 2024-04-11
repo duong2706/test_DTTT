@@ -16,7 +16,7 @@ jobs:
     - name: Install GCC
       run: sudo apt-get update && sudo apt-get install -y g++
 
-    - name: Compile Code and Generate Hex File
+    - name: Compile Code and Generate Binary File
       run: |
         g++ -o myapp C:/Users/nvduo/TEST_DTTT/test_DTTT/src/main.cpp -lstdc++
-        objcopy -O ihex myapp myapp.hex
+        objcopy -O binary myapp myapp.bin
