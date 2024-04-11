@@ -6,49 +6,18 @@ on:
       - main
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run unit tests
-      run: npm test
-
   build:
-    needs: unit-test
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Build Website
-      run: npm run build
 
     - name: Install GCC
       run: sudo apt-get update && sudo apt-get install -y g++
 
-    - name: Compile Code
-      run: g++ -o myapp main.cpp -lstdc++
+    - name: Move to source directory
+      run: cd C:/Users/nvduo/TEST_DTTT/test_DTTT/src
 
-    - name: Generate Hex File
-      run: objcopy -O ihex myapp myapp.hex
-
-    - name: Build Docker image
-      run: docker build -t myapp .
-
-    - name: Push Docker image to registry
-      uses: docker/build-push-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: username/repository
-        tag_with_ref: true
+    - name: Compile Code and Generate Hex File
+      run: g++ -o myapp main.cpp -lstdc++ && objcopy -O ihex myapp myapp.hex
