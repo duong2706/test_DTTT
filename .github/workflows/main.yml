@@ -44,7 +44,7 @@ jobs:
         repository: username/repository
         tag_with_ref: true
 
-  deploy:
+  relase:
     runs-on: ubuntu-latest
     needs: build
 
