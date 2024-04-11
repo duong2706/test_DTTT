@@ -33,14 +33,14 @@ jobs:
     - name: Build Website
       run: npm run build
 
-    - name: Install GCC (if needed)
-      run: sudo apt-get update && sudo apt-get install -y gcc
+    - name: Install GCC
+      run: sudo apt-get update && sudo apt-get install -y g++
 
     - name: Compile Code
-      run: gcc -o myapp main.c   # Thay main.c bằng tên của tệp mã nguồn chính và myapp bằng tên tệp kết quả mong muốn
+      run: g++ -o myapp main.cpp -lstdc++
 
     - name: Generate Hex File
-      run: objcopy -O ihex myapp myapp.hex   # Tạo tệp hex từ tệp nhị phân
+      run: objcopy -O ihex myapp myapp.hex
 
     - name: Build Docker image
       run: docker build -t myapp .
