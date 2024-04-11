@@ -63,11 +63,8 @@ jobs:
     - name: Build Website
       run: npm run build
 
-    - name: Deploy to GitHub Pages
+    - name: Deploy to AWS EC2 Instance
       if: success()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        # CNAME is optional, only if you want to use a custom domain
-        # cname: yourdomain.com   
+      run: |
+        # Sử dụng SCP hoặc SFTP để tải các tệp cần thiết lên EC2 Instance
+        scp -r ./build/* user@your-ec2-instance-ip:/path/to/destination
