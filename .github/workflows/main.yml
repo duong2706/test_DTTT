@@ -17,7 +17,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y g++
 
     - name: Move to source directory
-      run: cd C:/Users/nvduo/TEST_DTTT/test_DTTT/src
+      run: cd src
 
     - name: Compile Code and Generate Hex File
       run: g++ -o myapp main.cpp -lstdc++ && objcopy -O ihex myapp myapp.hex
